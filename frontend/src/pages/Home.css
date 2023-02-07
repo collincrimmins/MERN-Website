@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+}
+
+header .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.workoutList {
+    width: 100%;
+}
+
+.workoutBox {
+    background-color: rgb(255, 255, 255);
+    margin: 20px auto;
+    border-radius: 20px;
+    padding: 1px;
+    width: 90%;
+    position: relative;
+    box-shadow: 2px 2px 5px black;
+}
+
+.workoutBox p {
+    margin: 2%;
+    font-size: large;
+    color: black;
+}
+
+.workoutBox span {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background-color: white;
+    padding: 6px;
+    border-radius: 6px;
+    color: gray;
+}
