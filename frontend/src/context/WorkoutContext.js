@@ -1,9 +1,9 @@
 import { createContext, useReducer, useContext } from "react";
 
-export const WorkoutContexts = createContext()
+export const WorkoutContext = createContext()
 
 export const useWorkoutsContext = () => {
-    const context = useContext(WorkoutContexts)
+    const context = useContext(WorkoutContext)
 
     if (!context) {
         throw Error("useWorkoutsContext must be used inside a WorkoutsContextProvider")
@@ -40,12 +40,12 @@ export const workoutsReducer = (state, action) => {
 
 export const WorkoutContextsProvider = ({children}) => {
     const [state, dispatch] = useReducer(workoutsReducer, {
-        workouts: null // Starting State
+        workouts: null
     })
 
     return (
-        <WorkoutContexts.Provider value={{...state, dispatch}}>
+        <WorkoutContext.Provider value={{...state, dispatch}}>
             {children}
-        </WorkoutContexts.Provider>
+        </WorkoutContext.Provider>
     )
 }

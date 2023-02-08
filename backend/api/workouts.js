@@ -1,7 +1,11 @@
 const express = require("express")
-const router = express.Router()
 const mongoose = require("mongoose")
 const WorkoutModel = require("../models/workoutModel.js")
+const requireAuth = require("../middleware/requireAuth")
+
+// Enable Authentication Middleware
+const router = express.Router()
+router.use(requireAuth)
 
 // GET All Workouts
 router.get("/", async (Request, Response) => {

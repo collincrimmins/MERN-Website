@@ -4,12 +4,15 @@ import {Link, useNavigate, useMatch, useResolvedPath} from "react-router-dom"
 // Imports
 import "./Navbar.css"
 // Contexts
-//import {useAuthContext} from "../Contexts/AuthContext"
+import { useLogout } from '../hooks/useLogout'
+import { useAuthContext } from '../context/AuthContext'
 
 export default function Navbar() {
     //const {User, logout} = useAuthContext()
     //const [loginComponent, setLoginComponent] = useState(<></>)
     const navigate = useNavigate()
+    const {logout} = useLogout()
+    const {user} = useAuthContext()
 
     // Update Login/Logout Button
     // useEffect(() => {
@@ -26,12 +29,32 @@ export default function Navbar() {
     //     }
     // }, [User])
 
+    const handleLogout = () => {
+        logout()
+    }
+
     return (
         <nav className="nav">
             <Link to="/" className="home navItem">
                 My Javascript Website
             </Link>
             <ul>
+                {user && (
+                    <>
+                        <span>{user.email}</span>
+                        <button onClick={handleLogout}>Logout</button>
+                    </>
+                )}
+                {!user && (
+                    <>
+                        <Link to="/login" className="home navItem">
+                        Login
+                        </Link>
+                        <Link to="/signup" className="home navItem">
+                            Signup
+                        </Link>
+                    </>
+                )}
                 {/* {loginComponent} */}
                 {/* <ViewPage to="/update-profile" className="navItem">Settings</ViewPage> */}
             </ul>

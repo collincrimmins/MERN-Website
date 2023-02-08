@@ -33,3 +33,12 @@ form button {
 input.error {
   border: 1px solid red;
 }
+
+form.signup, form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border: 4px solid rgb(214, 214, 214);
+  box-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
