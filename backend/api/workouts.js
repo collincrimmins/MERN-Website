@@ -9,8 +9,10 @@ router.use(requireAuth)
 
 // GET All Workouts
 router.get("/", async (Request, Response) => {
+    // Get UserId
+    const user_id = Request.user._id
     // Get Workouts by Newest
-    const workouts = await WorkoutModel.find({}).sort({createdAt: -1})
+    const workouts = await WorkoutModel.find({user_id}).sort({createdAt: -1})
     // Return
     Response.status(200).json(workouts)
 })
@@ -50,7 +52,8 @@ router.post("/", async (Request, Response) => {
     }
     // Add Document to Database
     try {
-        const workoutDoc = await WorkoutModel.create({title, load, reps})
+        const user_id = Request.user._id
+        const workoutDoc = await WorkoutModel.create({title, load, reps, user_id})
         Response.status(200).json(workoutDoc)
     } catch (error) {
         Response.status(400).json({error: error.message})

@@ -12,8 +12,8 @@ const requireAuth = async (Request, Response, next) => {
     try {
         // Verify Token
         const {_id} = jwt.verify(token, process.env.SECRET_JWT_KEY)
-        // Get User
-        Request.user = await UserModel.findOne({_id}.select("_id"))
+        // Add User to All Requests (for use by API)
+        Request.user = await UserModel.findOne({_id}).select("_id")
         next()
     } catch (error) {
         console.log(error)
